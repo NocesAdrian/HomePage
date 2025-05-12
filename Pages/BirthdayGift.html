@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Love!</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to right, #ffdde1, #ee9ca7);
+      color: #fff;
+      text-align: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      padding: 4rem 2rem;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #fff4f4;
+      text-shadow: 2px 2px 4px #00000088;
+      animation: floatText 3s ease-in-out infinite;
+    }
+
+    @keyframes floatText {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 1rem 0 2rem;
+      color: #fff4f4;
+      animation: fadeIn 2s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .photo-frame {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      animation: fadeIn 2s ease-in 1s forwards;
+    }
+
+    .photo-frame img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 5px solid #fff;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      background-color: #fff;
+    }
+
+    .photo-frame img:hover {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 50px;
+      background-color: #ff6f91;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background 0.3s ease, transform 0.2s;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      background-color: #ff3e6c;
+      transform: scale(1.05);
+    }
+
+    .message-page {
+      display: none;
+      padding: 4rem 2rem;
+      position: relative;
+    }
+
+    .message-page h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      animation: floatText 3s ease-in-out infinite;
+    }
+
+    .message-page p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #fffef0;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatHearts 8s linear infinite;
+    }
+
+    .heart::before, .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes floatHearts {
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+    }
+  </style>
+  <script>
+    function goToMessagePage() {
+      document.querySelector('.hero').style.display = 'none';
+      document.getElementById('messagePage').style.display = 'block';
+    }
+
+    function backToMain() {
+      document.getElementById('messagePage').style.display = 'none';
+      document.querySelector('.hero').style.display = 'block';
+    }
+
+    function spawnHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = '100vh';
+      heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+
+    setInterval(spawnHeart, 300);
+  </script>
+</head>
+<body>
+  <div class="hero">
+    <h1>Happy Birthday, My Love!</h1>
+    <p>You make the world brighter just by existing!</p>
+    <div class="photo-frame">
+      <img id="photo1" src="your-photo-1.jpg" alt="Photo 1">
+      <img id="photo2" src="your-photo-2.jpg" alt="Photo 2">
+      <img id="photo3" src="your-photo-3.jpg" alt="Photo 3">
+    </div>
+    <button onclick="goToMessagePage()">Read My Message</button>
+  </div>
+
+  <div class="message-page" id="messagePage">
+    <h2>My Message to You</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu leo vel lorem laoreet faucibus. <br>
+      Nulla facilisi. Morbi dapibus, erat ac tincidunt volutpat, neque nunc viverra risus, at rutrum ligula <br>
+      nulla nec justo. Vivamus ut felis et erat consequat porttitor. Love you always.
+    </p>
+    <button onclick="backToMain()">Back</button>
+  </div>
+</body>
+</html>
